@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Form_CancelBtn" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ProfileManagerForm_ImportProfile" xml:space="preserve">
+    <value>Import Profile</value>
+  </data>
+  <data name="NotionExporter" xml:space="preserve">
+    <value>Notion Exporter</value>
+  </data>
+  <data name="NotionExporter_KeyMustBeConfigured" xml:space="preserve">
+    <value>A Notion API Key must be configured to use this application. Would you like to configure it now?</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>&amp;Apply</value>
+  </data>
+  <data name="Form_OKBtn" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="PDF" xml:space="preserve">
+    <value>PDF</value>
+  </data>
+  <data name="SizeAllColumnsToFit" xml:space="preserve">
+    <value>Size All Columns to Fit</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Created Time</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="LastEditedTime" xml:space="preserve">
+    <value>Last Edited Time</value>
+  </data>
+  <data name="LastEditedBy" xml:space="preserve">
+    <value>Last Edited By</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="URL" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="Archived" xml:space="preserve">
+    <value>Archived</value>
+  </data>
+  <data name="Parent" xml:space="preserve">
+    <value>Parent</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="EditColumns" xml:space="preserve">
+    <value>Edit Columns...</value>
+  </data>
+  <data name="Ready" xml:space="preserve">
+    <value>Ready</value>
+  </data>
+  <data name="ProfileLbl" xml:space="preserve">
+    <value>Profile: </value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ProfileManagerBtn" xml:space="preserve">
+    <value>Profile Manager...</value>
+  </data>
+  <data name="SettingsBtn" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ExportAll" xml:space="preserve">
+    <value>Export All</value>
+  </data>
+  <data name="ExportQueue" xml:space="preserve">
+    <value>Export Queue</value>
+  </data>
+  <data name="Properties" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="MoveDown" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="MoveUp" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="InputTab_RemoveBtn" xml:space="preserve">
+    <value>&lt;&lt; Remove</value>
+  </data>
+  <data name="InputTab_AddBtn" xml:space="preserve">
+    <value>Add &gt;&gt;</value>
+  </data>
+  <data name="Databases" xml:space="preserve">
+    <value>Databases</value>
+  </data>
+  <data name="Pages" xml:space="preserve">
+    <value>Pages</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="SortLbl" xml:space="preserve">
+    <value>Sort: </value>
+  </data>
+  <data name="InputTab_SaveSelectionInProfile" xml:space="preserve">
+    <value>Save Selection in Profile</value>
+  </data>
+  <data name="QueryLbl" xml:space="preserve">
+    <value>Query: </value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="ProfileManager_Duplicate" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="SetDefault" xml:space="preserve">
+    <value>Set Default</value>
+  </data>
+  <data name="ProfileManager_Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Form_CloseBtn" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ProfileManager" xml:space="preserve">
+    <value>Profile Manager</value>
+  </data>
+  <data name="About_TxtLine1" xml:space="preserve">
+    <value>A tool for exporting pages and database from Notion.</value>
+  </data>
+  <data name="About_TxtLine2" xml:space="preserve">
+    <value>Copyright (C) 2023 Ryan Bester.</value>
+  </data>
+  <data name="About_TxtLine3" xml:space="preserve">
+    <value>This tool is not affiliated with Notion Labs, Inc.</value>
+  </data>
+  <data name="About_Licenses" xml:space="preserve">
+    <value>Licenses</value>
+  </data>
+  <data name="About_AuthorsLbl" xml:space="preserve">
+    <value>Authors: </value>
+  </data>
+  <data name="NameLbl" xml:space="preserve">
+    <value>Name: </value>
+  </data>
+  <data name="VersionLbl" xml:space="preserve">
+    <value>Version: </value>
+  </data>
+  <data name="URLLbl" xml:space="preserve">
+    <value>URL: </value>
+  </data>
+  <data name="RepositoryLbl" xml:space="preserve">
+    <value>Repository: </value>
+  </data>
+  <data name="About_CopyrightLbl" xml:space="preserve">
+    <value>Copyright: </value>
+  </data>
+  <data name="About_LicenseLbl" xml:space="preserve">
+    <value>License: </value>
+  </data>
+  <data name="About_LicensesTxt" xml:space="preserve">
+    <value>This software is made possible through the following third party libraries:</value>
+  </data>
+  <data name="About_Title" xml:space="preserve">
+    <value>About Notion Exporter</value>
+  </data>
+  <data name="NewProfileForm_Title" xml:space="preserve">
+    <value>New Profile</value>
+  </data>
+  <data name="ProfileManagerForm_DeleteTxt" xml:space="preserve">
+    <value>Are you sure you want to delete {0}?</value>
+  </data>
+  <data name="ProfileManagerForm_DeleteTitle" xml:space="preserve">
+    <value>Delete {0}</value>
+  </data>
+  <data name="ProfileManagerForm_ExportTitle" xml:space="preserve">
+    <value>Export {0}</value>
+  </data>
+  <data name="NewProfileForm_DuplicateTitle" xml:space="preserve">
+    <value>Duplicate {0}</value>
+  </data>
+  <data name="NewProfileForm_RenameTitle" xml:space="preserve">
+    <value>Rename {0}</value>
+  </data>
+  <data name="SettingsForm_NotionKeyLbl" xml:space="preserve">
+    <value>Notion Key: </value>
+  </data>
+  <data name="Settings_General" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="UseSystemLanguage" xml:space="preserve">
+    <value>Use System Language</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="SettingsForm_ThemeFollowsSystem" xml:space="preserve">
+    <value>Follows System</value>
+  </data>
+  <data name="SettingsForm_ThemeLight" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsForm_ThemeDark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Settings_BackupAndRestore" xml:space="preserve">
+    <value>Backup and Restore</value>
+  </data>
+  <data name="SettingsForm_BackupRestoreTxt" xml:space="preserve">
+    <value>Note: The backup file will contain sensitive information such as your Notion key.</value>
+  </data>
+  <data name="Settings_BackupSettings" xml:space="preserve">
+    <value>Backup Settings</value>
+  </data>
+  <data name="RestoreSettings" xml:space="preserve">
+    <value>Restore Settings</value>
+  </data>
+  <data name="Settings_Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="SettingsForm_Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="SettingsForm_Permission" xml:space="preserve">
+    <value>Permission</value>
+  </data>
+  <data name="SettingsForm_NotionKeyTxt" xml:space="preserve">
+    <value>The integration must have the Read Content, Read Comments, and Read User Information permissions.</value>
+  </data>
+  <data name="SettingsForm_LoadIcons" xml:space="preserve">
+    <value>Load Icons</value>
+  </data>
+  <data name="Settings_ColumnsLbl" xml:space="preserve">
+    <value>Columns: </value>
+  </data>
+  <data name="SettingsForm_Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+</root>
