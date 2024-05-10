@@ -1,36 +1,22 @@
-﻿using DarkMode.Helper;
-using Notion.Client;
+﻿using Notion.Client;
+using NotionExporter.Core;
 using NotionExporter.Data.Settings;
-using System.Configuration;
 using System.Globalization;
 using System.IO.Compression;
-using NotionExporter.Data;
-using Microsoft.Extensions.Logging;
-using NotionExporter.Core;
-using NotionExporter.Core.Logging;
-using NotionExporter.UI.Settings;
-using Serilog.Events;
 
-namespace NotionExporter.UI
+namespace NotionExporter.UI.Settings
 {
-    public partial class SettingsForm : Form
+    public partial class GeneralTab : UserControl, ISettingsTab
     {
-        public SettingsForm()
+        public GeneralTab()
         {
             InitializeComponent();
-
-            if (Languages.IsRightToLeft) RightToLeft = RightToLeft.Yes;
         }
 
-        public SettingsForm(int tabIndex) : this()
+        private void GeneralTab_Load(object sender, EventArgs e)
         {
-            TabControl.SelectedTab = TabControl.TabPages[tabIndex];
-        }
-
-        protected override void WndProc(ref Message m)
-        {
-            DarkModeHelper.WndProc(this, m);
-            base.WndProc(ref m);
+            NotionKeyLst.SmallImageList = SetupImageList();
+            NotionKeyLst.LargeImageList = SetupImageList();
         }
 
         const int IMG_LOADING = 0;
@@ -80,28 +66,7 @@ namespace NotionExporter.UI
             return imageLst;
         }
 
-        private void SettingsForm_Load(object sender, EventArgs e)
-        {
-            DarkModeHelper.WndLoad(this);
-
-            LoadSettings();
-
-            NotionKeyLst.SmallImageList = SetupImageList();
-            NotionKeyLst.LargeImageList = SetupImageList();
-        }
-
-        private void OkBtn_Click(object sender, EventArgs e)
-        {
-            SaveSettings();
-            Close();
-        }
-
-        private void ApplyBtn_Click(object sender, EventArgs e)
-        {
-            SaveSettings();
-        }
-
-        private void LoadSettings()
+        public void LoadSettings()
         {
             NotionKeyTxt.Text = SettingsManager.Settings.NotionKey;
 
@@ -123,7 +88,10 @@ namespace NotionExporter.UI
             LanguageCombo.DataSource = Languages.SupportedLanguages;
             LanguageCombo.DisplayMember = "DisplayName";
 
-            var culture = new CultureInfo(SettingsManager.Settings.Language);
+
+            var culture = SettingsManager.Settings.Language.ToLower() == "qps-plocm"
+                ? new CultureInfo("qps-Ploc")
+                : new CultureInfo(SettingsManager.Settings.Language);
             if (Languages.SupportedLanguages.Contains(culture))
             {
                 LanguageCombo.SelectedItem = culture;
@@ -136,7 +104,7 @@ namespace NotionExporter.UI
             }
         }
 
-        private void SaveSettings()
+        public void SaveSettings()
         {
             SettingsManager.Settings.NotionKey = NotionKeyTxt.Text;
             AppContext.SetNotionKey(NotionKeyTxt.Text);
@@ -147,9 +115,8 @@ namespace NotionExporter.UI
 
             SettingsManager.Settings.UseSystemLanguage = SystemLanguageChk.Checked;
             SettingsManager.Settings.Language = ((CultureInfo)LanguageCombo.SelectedItem).Name;
-
-            SettingsManager.WriteSettings();
         }
+
 
         private void NotionKeyTestBtn_Click(object sender, EventArgs e)
         {

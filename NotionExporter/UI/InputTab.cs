@@ -1,5 +1,6 @@
 ﻿using DarkMode.Helper;
 using Notion.Client;
+using NotionExporter.UI.Settings;
 using static NotionExporter.UI.Controls.CustomListView;
 
 namespace NotionExporter.UI

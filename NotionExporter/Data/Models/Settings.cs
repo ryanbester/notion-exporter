@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Serilog.Events;
+using System.Text.Json.Serialization;
 
 namespace NotionExporter.Data.Models
 {
@@ -15,5 +16,7 @@ namespace NotionExporter.Data.Models
         [JsonPropertyName("system_language")] public bool UseSystemLanguage { get; set; } = true;
 
         [JsonPropertyName("language")] public string Language { get; set; } = "en-US";
+
+        [JsonPropertyName("log_level")] public LogEventLevel LogLevel { get;set;} = LogEventLevel.Information;
     }
 }
