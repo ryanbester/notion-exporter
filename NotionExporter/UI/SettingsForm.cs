@@ -5,6 +5,11 @@ using System.Configuration;
 using System.Globalization;
 using System.IO.Compression;
 using NotionExporter.Data;
+using Microsoft.Extensions.Logging;
+using NotionExporter.Core;
+using NotionExporter.Core.Logging;
+using NotionExporter.UI.Settings;
+using Serilog.Events;
 
 namespace NotionExporter.UI
 {
@@ -13,6 +18,8 @@ namespace NotionExporter.UI
         public SettingsForm()
         {
             InitializeComponent();
+
+            if (Languages.IsRightToLeft) RightToLeft = RightToLeft.Yes;
         }
 
         public SettingsForm(int tabIndex) : this()

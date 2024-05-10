@@ -1,5 +1,6 @@
 ﻿using Serilog.Events;
 using System.Diagnostics;
+using NotionExporter.Core;
 using NotionExporter.Core.Logging;
 using NotionExporter.Properties;
 
@@ -11,7 +12,7 @@ namespace NotionExporter.UI
         {
             InitializeComponent();
 
-            if (Program.IsRightToLeft) RightToLeft = RightToLeft.Yes;
+            if (Languages.IsRightToLeft) RightToLeft = RightToLeft.Yes;
         }
 
         private readonly ImageList _imageList = new();

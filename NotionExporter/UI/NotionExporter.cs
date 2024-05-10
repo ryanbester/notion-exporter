@@ -1,6 +1,7 @@
 using DarkMode.Helper;
 using NotionExporter.Data.Settings;
 using System.Runtime.InteropServices;
+using NotionExporter.Core;
 using NotionExporter.Data;
 using NotionExporter.Data.Models;
 using NotionExporter.Properties;
@@ -33,6 +34,8 @@ namespace NotionExporter.UI
         public NotionExporter()
         {
             InitializeComponent();
+
+            if (Languages.IsRightToLeft) RightToLeft = RightToLeft.Yes;
         }
 
         protected override void WndProc(ref Message m)
