@@ -1,8 +1,11 @@
 using System.Globalization;
 using DarkMode.Helper;
+using Microsoft.Extensions.Logging;
+using NotionExporter.Core.Logging;
 using NotionExporter.Data;
 using NotionExporter.Data.Settings;
 using NotionExporter.Properties;
+using NotionExporter.UI;
 
 namespace NotionExporter
 {
@@ -12,7 +15,7 @@ namespace NotionExporter
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
@@ -28,6 +31,19 @@ namespace NotionExporter
                     MessageBoxIcon.Error);
                 return;
             }
+
+            // Setup logger
+            Logger.InitLogger();
+
+            // Open Log form if running in Debug mode
+#if DEBUG
+            var logForm = new LogForm
+            {
+                StartPosition = FormStartPosition.Manual,
+                Location = new Point(0, 0)
+            };
+            logForm.Show();
+#endif
 
             var darkModeProperties = new DarkModeProperties()
             {
