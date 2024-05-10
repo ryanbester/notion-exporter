@@ -8,6 +8,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4127E28B-938A-4B83-859A-5C764963B7B6}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{D28F5855-1D54-4540-B434-AC60FCA8A9ED}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\generate-licenses.bat = Scripts\generate-licenses.bat
+		Scripts\pseudo-localize.bat = Scripts\pseudo-localize.bat
 	EndProjectSection
 EndProject
 Global
