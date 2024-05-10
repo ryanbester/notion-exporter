@@ -186,6 +186,15 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy Details.
+        /// </summary>
+        internal static string CopyDetails {
+            get {
+                return ResourceManager.GetString("CopyDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created By.
         /// </summary>
         internal static string CreatedBy {
@@ -209,6 +218,15 @@ namespace NotionExporter.Properties {
         internal static string Databases {
             get {
                 return ResourceManager.GetString("Databases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        internal static string Debug {
+            get {
+                return ResourceManager.GetString("Debug", resourceCulture);
             }
         }
         
@@ -249,6 +267,24 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception.
+        /// </summary>
+        internal static string Exception {
+            get {
+                return ResourceManager.GetString("Exception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         internal static string Export {
@@ -272,6 +308,33 @@ namespace NotionExporter.Properties {
         internal static string ExportQueue {
             get {
                 return ResourceManager.GetString("ExportQueue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fatal.
+        /// </summary>
+        internal static string Fatal {
+            get {
+                return ResourceManager.GetString("Fatal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        internal static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter: .
+        /// </summary>
+        internal static string FilterLbl {
+            get {
+                return ResourceManager.GetString("FilterLbl", resourceCulture);
             }
         }
         
@@ -303,6 +366,15 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Highlight.
+        /// </summary>
+        internal static string Highlight {
+            get {
+                return ResourceManager.GetString("Highlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID.
         /// </summary>
         internal static string ID {
@@ -317,6 +389,15 @@ namespace NotionExporter.Properties {
         internal static string Import {
             get {
                 return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        internal static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
             }
         }
         
@@ -380,6 +461,33 @@ namespace NotionExporter.Properties {
         internal static string LastEditedTime {
             get {
                 return ResourceManager.GetString("LastEditedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Level.
+        /// </summary>
+        internal static string Level {
+            get {
+                return ResourceManager.GetString("Level", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log.
+        /// </summary>
+        internal static string Log {
+            get {
+                return ResourceManager.GetString("Log", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message.
+        /// </summary>
+        internal static string Message {
+            get {
+                return ResourceManager.GetString("Message", resourceCulture);
             }
         }
         
@@ -465,11 +573,29 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to read settings: {0}.
+        /// </summary>
+        internal static string NotionExporter_FailedToReadSettings {
+            get {
+                return ResourceManager.GetString("NotionExporter_FailedToReadSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to A Notion API Key must be configured to use this application. Would you like to configure it now?.
         /// </summary>
         internal static string NotionExporter_KeyMustBeConfigured {
             get {
                 return ResourceManager.GetString("NotionExporter_KeyMustBeConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open Log Folder....
+        /// </summary>
+        internal static string OpenLogFolderBtn {
+            get {
+                return ResourceManager.GetString("OpenLogFolderBtn", resourceCulture);
             }
         }
         
@@ -654,6 +780,15 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select a log event above to view details.
+        /// </summary>
+        internal static string SelectLogEvent_DetailsTxt {
+            get {
+                return ResourceManager.GetString("SelectLogEvent_DetailsTxt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set Default.
         /// </summary>
         internal static string SetDefault {
@@ -825,6 +960,15 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Source.
+        /// </summary>
+        internal static string Source {
+            get {
+                return ResourceManager.GetString("Source", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Theme.
         /// </summary>
         internal static string Theme {
@@ -834,11 +978,47 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Timestamp.
+        /// </summary>
+        internal static string Timestamp {
+            get {
+                return ResourceManager.GetString("Timestamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Type.
         /// </summary>
         internal static string Type {
             get {
                 return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}{0}The application will now quit..
+        /// </summary>
+        internal static string UnhandledException_ApplicationQuit {
+            get {
+                return ResourceManager.GetString("UnhandledException_ApplicationQuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}{0}{1} at {2}: {3}{0}{0}Check the application logs for more details..
+        /// </summary>
+        internal static string UnhandledException_CheckLogs {
+            get {
+                return ResourceManager.GetString("UnhandledException_CheckLogs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unhandled exception has occurred..
+        /// </summary>
+        internal static string UnhandledException_Occurred {
+            get {
+                return ResourceManager.GetString("UnhandledException_Occurred", resourceCulture);
             }
         }
         
@@ -870,11 +1050,29 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verbose.
+        /// </summary>
+        internal static string Verbose {
+            get {
+                return ResourceManager.GetString("Verbose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Version: .
         /// </summary>
         internal static string VersionLbl {
             get {
                 return ResourceManager.GetString("VersionLbl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        internal static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }

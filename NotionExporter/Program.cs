@@ -21,6 +21,29 @@ namespace NotionExporter
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
+            var currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += (_, args) =>
+            {
+                Logger.App?.LogCritical((Exception)args.ExceptionObject, "An unhandled exception occurred");
+
+                var e = (Exception)args.ExceptionObject;
+                var message = Resources.UnhandledException_Occurred;
+                if (Logger.App != null)
+                {
+                    message += string.Format(Resources.UnhandledException_CheckLogs, Environment.NewLine, e.GetType(),
+                        e.TargetSite, e.Message);
+                }
+                else
+                {
+                    message += string.Format("{0}{0}{1}", Environment.NewLine, e);
+                }
+
+                if (args.IsTerminating)
+                    message += string.Format(Resources.UnhandledException_ApplicationQuit, Environment.NewLine);
+                MessageBox.Show(null, message, Resources.NotionExporter, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+            Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
+
             try
             {
                 SettingsManager.ReadSettings();
