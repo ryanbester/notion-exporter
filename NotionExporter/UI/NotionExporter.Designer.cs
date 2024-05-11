@@ -57,7 +57,7 @@ namespace NotionExporter.UI
             toolStripStatusLabel1 = new ToolStripStatusLabel();
             toolStripProgressBar1 = new ToolStripProgressBar();
             toolStripStatusLabel2 = new ToolStripStatusLabel();
-            label1 = new Label();
+            ProfileLbl = new Label();
             ProfilesCombo = new ComboBox();
             button1 = new Button();
             ProfileManagerBtn = new Button();
@@ -70,6 +70,8 @@ namespace NotionExporter.UI
             InputLeftLst = new CustomListView();
             LeftNameHdr = new ColumnHeader();
             LeftTypeHdr = new ColumnHeader();
+            RightFlowLayout = new FlowLayoutPanel();
+            LeftFlowLayout = new FlowLayoutPanel();
             MainTabControl.SuspendLayout();
             InputTab.SuspendLayout();
             InputLstMenu.SuspendLayout();
@@ -78,6 +80,8 @@ namespace NotionExporter.UI
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            RightFlowLayout.SuspendLayout();
+            LeftFlowLayout.SuspendLayout();
             SuspendLayout();
             // 
             // MainTabControl
@@ -246,22 +250,24 @@ namespace NotionExporter.UI
             toolStripStatusLabel2.Size = new Size(1413, 17);
             toolStripStatusLabel2.Spring = true;
             // 
-            // label1
+            // ProfileLbl
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(44, 15);
-            label1.TabIndex = 8;
-            label1.Text = Resources.ProfileLbl;
-            label1.AutoSize = true;
+            ProfileLbl.AutoSize = true;
+            ProfileLbl.Location = new Point(0, 0);
+            ProfileLbl.Margin = new Padding(0);
+            ProfileLbl.MinimumSize = new Size(0, 30);
+            ProfileLbl.Name = "ProfileLbl";
+            ProfileLbl.Size = new Size(47, 30);
+            ProfileLbl.TabIndex = 8;
+            ProfileLbl.Text = Resources.ProfileLbl;
+            ProfileLbl.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // ProfilesCombo
             // 
             ProfilesCombo.DropDownStyle = ComboBoxStyle.DropDownList;
             ProfilesCombo.FlatStyle = FlatStyle.System;
             ProfilesCombo.FormattingEnabled = true;
-            ProfilesCombo.Location = new Point(62, 12);
+            ProfilesCombo.Location = new Point(50, 3);
             ProfilesCombo.Name = "ProfilesCombo";
             ProfilesCombo.Size = new Size(188, 23);
             ProfilesCombo.TabIndex = 9;
@@ -270,53 +276,51 @@ namespace NotionExporter.UI
             // button1
             // 
             button1.FlatStyle = FlatStyle.System;
-            button1.Location = new Point(256, 12);
+            button1.Location = new Point(244, 3);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(75, 24);
             button1.TabIndex = 10;
             button1.Text = Resources.Save;
             button1.UseVisualStyleBackColor = true;
             // 
             // ProfileManagerBtn
             // 
+            ProfileManagerBtn.AutoSize = true;
             ProfileManagerBtn.FlatStyle = FlatStyle.System;
-            ProfileManagerBtn.Location = new Point(337, 12);
+            ProfileManagerBtn.Location = new Point(325, 3);
             ProfileManagerBtn.Name = "ProfileManagerBtn";
-            ProfileManagerBtn.Size = new Size(145, 23);
+            ProfileManagerBtn.Size = new Size(145, 24);
             ProfileManagerBtn.TabIndex = 11;
             ProfileManagerBtn.Text = Resources.ProfileManagerBtn;
             ProfileManagerBtn.UseVisualStyleBackColor = true;
             ProfileManagerBtn.Click += ProfileManagerBtn_Click;
-            ProfileManagerBtn.AutoSize = true;
-            ProfileManagerBtn.AutoSizeMode = AutoSizeMode.GrowOnly;
             // 
             // SettingsBtn
             // 
             SettingsBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            SettingsBtn.AutoSize = true;
             SettingsBtn.FlatStyle = FlatStyle.System;
-            SettingsBtn.Location = new Point(1482, 15);
+            SettingsBtn.Location = new Point(84, 3);
+            SettingsBtn.Margin = new Padding(3, 3, 0, 3);
             SettingsBtn.Name = "SettingsBtn";
-            SettingsBtn.Size = new Size(75, 23);
+            SettingsBtn.Size = new Size(75, 24);
             SettingsBtn.TabIndex = 12;
             SettingsBtn.Text = Resources.SettingsBtn;
             SettingsBtn.UseVisualStyleBackColor = true;
             SettingsBtn.Click += SettingsBtn_Click;
-            SettingsBtn.AutoSize = true;
-            SettingsBtn.AutoSizeMode = AutoSizeMode.GrowOnly;
             // 
             // AboutBtn
             // 
             AboutBtn.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            AboutBtn.AutoSize = true;
             AboutBtn.FlatStyle = FlatStyle.System;
-            AboutBtn.Location = new Point(1401, 15);
+            AboutBtn.Location = new Point(3, 3);
             AboutBtn.Name = "AboutBtn";
-            AboutBtn.Size = new Size(75, 23);
+            AboutBtn.Size = new Size(75, 24);
             AboutBtn.TabIndex = 13;
             AboutBtn.Text = Resources.About;
             AboutBtn.UseVisualStyleBackColor = true;
             AboutBtn.Click += AboutBtn_Click;
-            AboutBtn.AutoSize = true;
-            AboutBtn.AutoSizeMode = AutoSizeMode.GrowOnly;
             // 
             // splitContainer1
             // 
@@ -391,18 +395,42 @@ namespace NotionExporter.UI
             // 
             LeftTypeHdr.Text = Resources.Type;
             // 
+            // RightFlowLayout
+            // 
+            RightFlowLayout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            RightFlowLayout.AutoSize = true;
+            RightFlowLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            RightFlowLayout.Controls.Add(SettingsBtn);
+            RightFlowLayout.Controls.Add(AboutBtn);
+            RightFlowLayout.FlowDirection = FlowDirection.RightToLeft;
+            RightFlowLayout.Location = new Point(1395, 5);
+            RightFlowLayout.Margin = new Padding(0);
+            RightFlowLayout.Name = "RightFlowLayout";
+            RightFlowLayout.Size = new Size(159, 30);
+            RightFlowLayout.TabIndex = 15;
+            // 
+            // LeftFlowLayout
+            // 
+            LeftFlowLayout.AutoSize = true;
+            LeftFlowLayout.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            LeftFlowLayout.Controls.Add(ProfileLbl);
+            LeftFlowLayout.Controls.Add(ProfilesCombo);
+            LeftFlowLayout.Controls.Add(button1);
+            LeftFlowLayout.Controls.Add(ProfileManagerBtn);
+            LeftFlowLayout.Location = new Point(12, 5);
+            LeftFlowLayout.Margin = new Padding(0);
+            LeftFlowLayout.Name = "LeftFlowLayout";
+            LeftFlowLayout.Size = new Size(473, 30);
+            LeftFlowLayout.TabIndex = 16;
+            // 
             // NotionExporter
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1569, 753);
+            Controls.Add(LeftFlowLayout);
+            Controls.Add(RightFlowLayout);
             Controls.Add(splitContainer1);
-            Controls.Add(AboutBtn);
-            Controls.Add(SettingsBtn);
-            Controls.Add(ProfileManagerBtn);
-            Controls.Add(button1);
-            Controls.Add(ProfilesCombo);
-            Controls.Add(label1);
             Controls.Add(statusStrip1);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -420,6 +448,10 @@ namespace NotionExporter.UI
             splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            RightFlowLayout.ResumeLayout(false);
+            RightFlowLayout.PerformLayout();
+            LeftFlowLayout.ResumeLayout(false);
+            LeftFlowLayout.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -432,7 +464,7 @@ namespace NotionExporter.UI
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripProgressBar toolStripProgressBar1;
         private ToolStripStatusLabel toolStripStatusLabel2;
-        private Label label1;
+        private Label ProfileLbl;
         private ComboBox ProfilesCombo;
         private Button button1;
         private Button ProfileManagerBtn;
@@ -462,5 +494,7 @@ namespace NotionExporter.UI
         private ColumnHeader LeftTypeHdr;
         private Button button3;
         private Button button2;
+        private FlowLayoutPanel RightFlowLayout;
+        private FlowLayoutPanel LeftFlowLayout;
     }
 }
