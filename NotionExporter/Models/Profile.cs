@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Text.Json.Serialization;
-using NotionExporter.Data.Settings;
+using NotionExporter.Core.Settings;
 
-namespace NotionExporter.Data.Models
+namespace NotionExporter.Models
 {
     [DebuggerDisplay("Name = {Name}, Built-In = {BuiltIn}")]
     public class Profile : ICloneable

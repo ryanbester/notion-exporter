@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace NotionExporter.Data.Settings
+namespace NotionExporter.Core.Settings
 {
     internal static class SettingsManager
     {

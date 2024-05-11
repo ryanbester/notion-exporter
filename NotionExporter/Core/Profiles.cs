@@ -1,7 +1,7 @@
-﻿using NotionExporter.Data.Models;
-using NotionExporter.Data.Settings;
+﻿using NotionExporter.Core.Settings;
+using NotionExporter.Models;
 
-namespace NotionExporter.Data
+namespace NotionExporter.Core
 {
     internal static class Profiles
     {

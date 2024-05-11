@@ -1,7 +1,7 @@
 ﻿using DarkMode.Helper;
 using System.Diagnostics;
 using System.Text.Json;
-using NotionExporter.Data.Models;
+using NotionExporter.Models;
 
 namespace NotionExporter.UI
 {

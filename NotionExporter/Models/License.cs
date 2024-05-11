@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace NotionExporter.Data.Models
+namespace NotionExporter.Models
 {
     internal class License
     {

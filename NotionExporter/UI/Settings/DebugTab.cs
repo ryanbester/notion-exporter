@@ -1,4 +1,4 @@
-﻿using NotionExporter.Data.Settings;
+﻿using NotionExporter.Core.Settings;
 using Serilog.Events;
 
 namespace NotionExporter.UI.Settings

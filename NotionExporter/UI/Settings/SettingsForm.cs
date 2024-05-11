@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using NotionExporter.Core;
 using NotionExporter.Core.Logging;
-using NotionExporter.Data.Settings;
+using NotionExporter.Core.Settings;
 
 namespace NotionExporter.UI.Settings
 {

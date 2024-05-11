@@ -1,8 +1,8 @@
 ﻿using Notion.Client;
 using NotionExporter.Core;
-using NotionExporter.Data.Settings;
 using System.Globalization;
 using System.IO.Compression;
+using NotionExporter.Core.Settings;
 
 namespace NotionExporter.UI.Settings
 {

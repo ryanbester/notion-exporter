@@ -1,10 +1,8 @@
-using System.Globalization;
 using DarkMode.Helper;
 using Microsoft.Extensions.Logging;
 using NotionExporter.Core;
 using NotionExporter.Core.Logging;
-using NotionExporter.Data;
-using NotionExporter.Data.Settings;
+using NotionExporter.Core.Settings;
 using NotionExporter.Properties;
 using NotionExporter.UI;
 

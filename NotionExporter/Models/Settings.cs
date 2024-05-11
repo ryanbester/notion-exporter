@@ -1,7 +1,7 @@
-﻿using Serilog.Events;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
+using Serilog.Events;
 
-namespace NotionExporter.Data.Models
+namespace NotionExporter.Models
 {
     public partial class Settings
     {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using NotionExporter.Data.Settings;
+using NotionExporter.Core.Settings;
 using Serilog;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
 

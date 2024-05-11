@@ -1,4 +1,4 @@
-﻿namespace NotionExporter.Data.Settings
+﻿namespace NotionExporter.Core.Settings
 {
     internal class InvalidConfigException : Exception
     {

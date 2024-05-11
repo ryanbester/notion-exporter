@@ -1,6 +1,6 @@
 ﻿using Notion.Client;
-using NotionExporter.Data;
-using NotionExporter.Data.Models;
+using NotionExporter.Core;
+using NotionExporter.Models;
 
 namespace NotionExporter
 {

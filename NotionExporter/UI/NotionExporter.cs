@@ -1,10 +1,10 @@
 using DarkMode.Helper;
-using NotionExporter.Data.Settings;
 using System.Runtime.InteropServices;
 using NotionExporter.Core;
-using NotionExporter.Data;
-using NotionExporter.Data.Models;
+using NotionExporter.Core.Settings;
+using NotionExporter.Models;
 using NotionExporter.Properties;
+using NotionExporter.UI.Settings;
 
 namespace NotionExporter.UI
 {

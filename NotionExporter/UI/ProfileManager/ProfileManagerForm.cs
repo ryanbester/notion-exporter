@@ -1,8 +1,8 @@
 ﻿using DarkMode.Helper;
-using NotionExporter.Data.Settings;
 using System.Text.Json;
-using NotionExporter.Data;
-using NotionExporter.Data.Models;
+using NotionExporter.Core;
+using NotionExporter.Core.Settings;
+using NotionExporter.Models;
 using NotionExporter.Properties;
 
 namespace NotionExporter.UI.ProfileManager
