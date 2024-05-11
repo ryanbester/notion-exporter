@@ -39,7 +39,10 @@ namespace NotionExporter.UI
             WebsiteLink = new LinkLabel();
             AboutTabControl = new TabControl();
             AboutTabPage = new TabPage();
-            LicensesTabPage = new TabPage();
+            GithubLink = new LinkLabel();
+            LicenseTabPage = new TabPage();
+            LicenseTxt = new TextBox();
+            LibrariesTabPage = new TabPage();
             LicensesTable = new TableLayoutPanel();
             LicensesLst = new ListView();
             PackageNameHdr = new ColumnHeader();
@@ -61,7 +64,8 @@ namespace NotionExporter.UI
             LicensesLbl = new Label();
             AboutTabControl.SuspendLayout();
             AboutTabPage.SuspendLayout();
-            LicensesTabPage.SuspendLayout();
+            LicenseTabPage.SuspendLayout();
+            LibrariesTabPage.SuspendLayout();
             LicensesTable.SuspendLayout();
             LicenseDetailsTable.SuspendLayout();
             SuspendLayout();
@@ -81,7 +85,7 @@ namespace NotionExporter.UI
             // TitleLbl
             // 
             TitleLbl.AutoSize = true;
-            TitleLbl.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            TitleLbl.Font = new Font("Segoe UI", 15.75F);
             TitleLbl.Location = new Point(12, 9);
             TitleLbl.Name = "TitleLbl";
             TitleLbl.Size = new Size(160, 30);
@@ -96,24 +100,25 @@ namespace NotionExporter.UI
             AboutLbl.Name = "AboutLbl";
             AboutLbl.Size = new Size(290, 75);
             AboutLbl.TabIndex = 2;
-            AboutLbl.Text = $"{Resources.About_TxtLine1}\r\n\r\n{Resources.About_TxtLine2}\r\n\r\n{Resources.About_TxtLine3}";
+            AboutLbl.Text = string.Format("{1}{0}{0}{2}{0}{0}{3}", Environment.NewLine, Resources.About_TxtLine1, Resources.About_TxtLine2, Resources.About_TxtLine3);;
             // 
             // WebsiteLink
             // 
             WebsiteLink.AutoSize = true;
             WebsiteLink.Location = new Point(6, 102);
             WebsiteLink.Name = "WebsiteLink";
-            WebsiteLink.Size = new Size(119, 15);
+            WebsiteLink.Size = new Size(49, 15);
             WebsiteLink.TabIndex = 4;
             WebsiteLink.TabStop = true;
-            WebsiteLink.Text = "www.ryanbester.com";
+            WebsiteLink.Text = Resources.Website;
             WebsiteLink.LinkClicked += WebsiteLink_LinkClicked;
             // 
             // AboutTabControl
             // 
             AboutTabControl.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             AboutTabControl.Controls.Add(AboutTabPage);
-            AboutTabControl.Controls.Add(LicensesTabPage);
+            AboutTabControl.Controls.Add(LicenseTabPage);
+            AboutTabControl.Controls.Add(LibrariesTabPage);
             AboutTabControl.Location = new Point(12, 50);
             AboutTabControl.Name = "AboutTabControl";
             AboutTabControl.SelectedIndex = 0;
@@ -122,6 +127,7 @@ namespace NotionExporter.UI
             // 
             // AboutTabPage
             // 
+            AboutTabPage.Controls.Add(GithubLink);
             AboutTabPage.Controls.Add(AboutLbl);
             AboutTabPage.Controls.Add(WebsiteLink);
             AboutTabPage.Location = new Point(4, 24);
@@ -132,17 +138,50 @@ namespace NotionExporter.UI
             AboutTabPage.Text = Resources.About;
             AboutTabPage.UseVisualStyleBackColor = true;
             // 
-            // LicensesTabPage
+            // GithubLink
             // 
-            LicensesTabPage.Controls.Add(LicensesTable);
-            LicensesTabPage.Controls.Add(LicensesLbl);
-            LicensesTabPage.Location = new Point(4, 24);
-            LicensesTabPage.Name = "LicensesTabPage";
-            LicensesTabPage.Padding = new Padding(3);
-            LicensesTabPage.Size = new Size(556, 183);
-            LicensesTabPage.TabIndex = 1;
-            LicensesTabPage.Text = Resources.About_Licenses;
-            LicensesTabPage.UseVisualStyleBackColor = true;
+            GithubLink.AutoSize = true;
+            GithubLink.Location = new Point(6, 128);
+            GithubLink.Name = "GithubLink";
+            GithubLink.Size = new Size(45, 15);
+            GithubLink.TabIndex = 5;
+            GithubLink.TabStop = true;
+            GithubLink.Text = "GitHub";
+            GithubLink.LinkClicked += GithubLink_LinkClicked;
+            // 
+            // LicenseTabPage
+            // 
+            LicenseTabPage.Controls.Add(LicenseTxt);
+            LicenseTabPage.Location = new Point(4, 24);
+            LicenseTabPage.Name = "LicenseTabPage";
+            LicenseTabPage.Padding = new Padding(3);
+            LicenseTabPage.Size = new Size(556, 183);
+            LicenseTabPage.TabIndex = 2;
+            LicenseTabPage.Text = Resources.About_License;
+            LicenseTabPage.UseVisualStyleBackColor = true;
+            // 
+            // LicenseTxt
+            // 
+            LicenseTxt.Dock = DockStyle.Fill;
+            LicenseTxt.Location = new Point(3, 3);
+            LicenseTxt.Multiline = true;
+            LicenseTxt.Name = "LicenseTxt";
+            LicenseTxt.ReadOnly = true;
+            LicenseTxt.ScrollBars = ScrollBars.Vertical;
+            LicenseTxt.Size = new Size(550, 177);
+            LicenseTxt.TabIndex = 0;
+            // 
+            // LibrariesTabPage
+            // 
+            LibrariesTabPage.Controls.Add(LicensesTable);
+            LibrariesTabPage.Controls.Add(LicensesLbl);
+            LibrariesTabPage.Location = new Point(4, 24);
+            LibrariesTabPage.Name = "LibrariesTabPage";
+            LibrariesTabPage.Padding = new Padding(3);
+            LibrariesTabPage.Size = new Size(556, 183);
+            LibrariesTabPage.TabIndex = 1;
+            LibrariesTabPage.Text = Resources.About_Libraries;
+            LibrariesTabPage.UseVisualStyleBackColor = true;
             // 
             // LicensesTable
             // 
@@ -212,29 +251,29 @@ namespace NotionExporter.UI
             // PackageAuthorsHdrLbl
             // 
             PackageAuthorsHdrLbl.AutoSize = true;
-            PackageAuthorsHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageAuthorsHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageAuthorsHdrLbl.Location = new Point(3, 72);
             PackageAuthorsHdrLbl.Name = "PackageAuthorsHdrLbl";
             PackageAuthorsHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageAuthorsHdrLbl.Size = new Size(54, 18);
+            PackageAuthorsHdrLbl.Size = new Size(57, 18);
             PackageAuthorsHdrLbl.TabIndex = 7;
             PackageAuthorsHdrLbl.Text = Resources.About_AuthorsLbl;
             // 
             // PackageNameHdrLbl
             // 
             PackageNameHdrLbl.AutoSize = true;
-            PackageNameHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageNameHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageNameHdrLbl.Location = new Point(3, 0);
             PackageNameHdrLbl.Name = "PackageNameHdrLbl";
             PackageNameHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageNameHdrLbl.Size = new Size(43, 18);
+            PackageNameHdrLbl.Size = new Size(46, 18);
             PackageNameHdrLbl.TabIndex = 0;
             PackageNameHdrLbl.Text = Resources.NameLbl;
             // 
             // PackageNameLbl
             // 
             PackageNameLbl.AutoSize = true;
-            PackageNameLbl.Location = new Point(79, 0);
+            PackageNameLbl.Location = new Point(82, 0);
             PackageNameLbl.Name = "PackageNameLbl";
             PackageNameLbl.Padding = new Padding(0, 0, 0, 3);
             PackageNameLbl.Size = new Size(0, 18);
@@ -243,62 +282,62 @@ namespace NotionExporter.UI
             // PackageVersionHdrLbl
             // 
             PackageVersionHdrLbl.AutoSize = true;
-            PackageVersionHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageVersionHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageVersionHdrLbl.Location = new Point(3, 18);
             PackageVersionHdrLbl.Name = "PackageVersionHdrLbl";
             PackageVersionHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageVersionHdrLbl.Size = new Size(51, 18);
+            PackageVersionHdrLbl.Size = new Size(54, 18);
             PackageVersionHdrLbl.TabIndex = 2;
             PackageVersionHdrLbl.Text = Resources.VersionLbl;
             // 
             // PackageUrlHdrLbl
             // 
             PackageUrlHdrLbl.AutoSize = true;
-            PackageUrlHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageUrlHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageUrlHdrLbl.Location = new Point(3, 36);
             PackageUrlHdrLbl.Name = "PackageUrlHdrLbl";
             PackageUrlHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageUrlHdrLbl.Size = new Size(33, 18);
+            PackageUrlHdrLbl.Size = new Size(36, 18);
             PackageUrlHdrLbl.TabIndex = 3;
             PackageUrlHdrLbl.Text = Resources.URLLbl;
             // 
             // PackageCopyrightHdrLbl
             // 
             PackageCopyrightHdrLbl.AutoSize = true;
-            PackageCopyrightHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageCopyrightHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageCopyrightHdrLbl.Location = new Point(3, 54);
             PackageCopyrightHdrLbl.Name = "PackageCopyrightHdrLbl";
             PackageCopyrightHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageCopyrightHdrLbl.Size = new Size(64, 18);
+            PackageCopyrightHdrLbl.Size = new Size(67, 18);
             PackageCopyrightHdrLbl.TabIndex = 4;
             PackageCopyrightHdrLbl.Text = Resources.About_CopyrightLbl;
             // 
             // PackageRepoHdrLbl
             // 
             PackageRepoHdrLbl.AutoSize = true;
-            PackageRepoHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageRepoHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageRepoHdrLbl.Location = new Point(3, 90);
             PackageRepoHdrLbl.Name = "PackageRepoHdrLbl";
             PackageRepoHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageRepoHdrLbl.Size = new Size(70, 18);
+            PackageRepoHdrLbl.Size = new Size(73, 18);
             PackageRepoHdrLbl.TabIndex = 8;
             PackageRepoHdrLbl.Text = Resources.RepositoryLbl;
             // 
             // PackageLicenseHdrLbl
             // 
             PackageLicenseHdrLbl.AutoSize = true;
-            PackageLicenseHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            PackageLicenseHdrLbl.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             PackageLicenseHdrLbl.Location = new Point(3, 108);
             PackageLicenseHdrLbl.Name = "PackageLicenseHdrLbl";
             PackageLicenseHdrLbl.Padding = new Padding(0, 0, 0, 3);
-            PackageLicenseHdrLbl.Size = new Size(51, 18);
+            PackageLicenseHdrLbl.Size = new Size(54, 18);
             PackageLicenseHdrLbl.TabIndex = 9;
             PackageLicenseHdrLbl.Text = Resources.About_LicenseLbl;
             // 
             // PackageVersionLbl
             // 
             PackageVersionLbl.AutoSize = true;
-            PackageVersionLbl.Location = new Point(79, 18);
+            PackageVersionLbl.Location = new Point(82, 18);
             PackageVersionLbl.Name = "PackageVersionLbl";
             PackageVersionLbl.Padding = new Padding(0, 0, 0, 3);
             PackageVersionLbl.Size = new Size(0, 18);
@@ -307,7 +346,7 @@ namespace NotionExporter.UI
             // PackageCopyrightLbl
             // 
             PackageCopyrightLbl.AutoSize = true;
-            PackageCopyrightLbl.Location = new Point(79, 54);
+            PackageCopyrightLbl.Location = new Point(82, 54);
             PackageCopyrightLbl.Name = "PackageCopyrightLbl";
             PackageCopyrightLbl.Padding = new Padding(0, 0, 0, 3);
             PackageCopyrightLbl.Size = new Size(0, 18);
@@ -316,7 +355,7 @@ namespace NotionExporter.UI
             // PackageAuthorsLbl
             // 
             PackageAuthorsLbl.AutoSize = true;
-            PackageAuthorsLbl.Location = new Point(79, 72);
+            PackageAuthorsLbl.Location = new Point(82, 72);
             PackageAuthorsLbl.Name = "PackageAuthorsLbl";
             PackageAuthorsLbl.Padding = new Padding(0, 0, 0, 3);
             PackageAuthorsLbl.Size = new Size(0, 18);
@@ -325,7 +364,7 @@ namespace NotionExporter.UI
             // PackageUrlLbl
             // 
             PackageUrlLbl.AutoSize = true;
-            PackageUrlLbl.Location = new Point(79, 36);
+            PackageUrlLbl.Location = new Point(82, 36);
             PackageUrlLbl.Name = "PackageUrlLbl";
             PackageUrlLbl.Padding = new Padding(0, 0, 0, 3);
             PackageUrlLbl.Size = new Size(0, 18);
@@ -335,7 +374,7 @@ namespace NotionExporter.UI
             // PackageRepoLbl
             // 
             PackageRepoLbl.AutoSize = true;
-            PackageRepoLbl.Location = new Point(79, 90);
+            PackageRepoLbl.Location = new Point(82, 90);
             PackageRepoLbl.Name = "PackageRepoLbl";
             PackageRepoLbl.Padding = new Padding(0, 0, 0, 3);
             PackageRepoLbl.Size = new Size(0, 18);
@@ -345,7 +384,7 @@ namespace NotionExporter.UI
             // PackageLicenseLbl
             // 
             PackageLicenseLbl.AutoSize = true;
-            PackageLicenseLbl.Location = new Point(79, 108);
+            PackageLicenseLbl.Location = new Point(82, 108);
             PackageLicenseLbl.Name = "PackageLicenseLbl";
             PackageLicenseLbl.Padding = new Padding(0, 0, 0, 3);
             PackageLicenseLbl.Size = new Size(0, 18);
@@ -375,16 +414,19 @@ namespace NotionExporter.UI
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AboutForm";
+            RightToLeftLayout = true;
             ShowInTaskbar = false;
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterParent;
-            Text = Resources.About_Title;
+            Text = Resources.About;
             Load += AboutForm_Load;
             AboutTabControl.ResumeLayout(false);
             AboutTabPage.ResumeLayout(false);
             AboutTabPage.PerformLayout();
-            LicensesTabPage.ResumeLayout(false);
-            LicensesTabPage.PerformLayout();
+            LicenseTabPage.ResumeLayout(false);
+            LicenseTabPage.PerformLayout();
+            LibrariesTabPage.ResumeLayout(false);
+            LibrariesTabPage.PerformLayout();
             LicensesTable.ResumeLayout(false);
             LicenseDetailsTable.ResumeLayout(false);
             LicenseDetailsTable.PerformLayout();
@@ -400,7 +442,7 @@ namespace NotionExporter.UI
         private LinkLabel WebsiteLink;
         private TabControl AboutTabControl;
         private TabPage AboutTabPage;
-        private TabPage LicensesTabPage;
+        private TabPage LibrariesTabPage;
         private Label LicensesLbl;
         private TableLayoutPanel LicensesTable;
         private ListView LicensesLst;
@@ -420,5 +462,8 @@ namespace NotionExporter.UI
         private LinkLabel PackageRepoLbl;
         private LinkLabel PackageLicenseLbl;
         private ColumnHeader PackageNameHdr;
+        private TabPage LicenseTabPage;
+        private TextBox LicenseTxt;
+        private LinkLabel GithubLink;
     }
 }

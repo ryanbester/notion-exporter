@@ -285,8 +285,8 @@
   <data name="About_TxtLine3" xml:space="preserve">
     <value>This tool is not affiliated with Notion Labs, Inc.</value>
   </data>
-  <data name="About_Licenses" xml:space="preserve">
-    <value>Licenses</value>
+  <data name="About_Libraries" xml:space="preserve">
+    <value>Libraries</value>
   </data>
   <data name="About_AuthorsLbl" xml:space="preserve">
     <value>Authors: </value>
@@ -455,5 +455,17 @@
   </data>
   <data name="UnhandledException_ApplicationQuit" xml:space="preserve">
     <value>{0}{0}The application will now quit.</value>
+  </data>
+  <data name="About_License" xml:space="preserve">
+    <value>License</value>
+  </data>
+  <data name="About_FailedToLoadLicense" xml:space="preserve">
+    <value>Failed to load license</value>
+  </data>
+  <data name="About_FailedToLoadLicenses" xml:space="preserve">
+    <value>Failed to load licenses</value>
+  </data>
+  <data name="Website" xml:space="preserve">
+    <value>Website</value>
   </data>
 </root>

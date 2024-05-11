@@ -87,20 +87,47 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to load license.
+        /// </summary>
+        internal static string About_FailedToLoadLicense {
+            get {
+                return ResourceManager.GetString("About_FailedToLoadLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to load licenses.
+        /// </summary>
+        internal static string About_FailedToLoadLicenses {
+            get {
+                return ResourceManager.GetString("About_FailedToLoadLicenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Libraries.
+        /// </summary>
+        internal static string About_Libraries {
+            get {
+                return ResourceManager.GetString("About_Libraries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to License.
+        /// </summary>
+        internal static string About_License {
+            get {
+                return ResourceManager.GetString("About_License", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to License: .
         /// </summary>
         internal static string About_LicenseLbl {
             get {
                 return ResourceManager.GetString("About_LicenseLbl", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Licenses.
-        /// </summary>
-        internal static string About_Licenses {
-            get {
-                return ResourceManager.GetString("About_Licenses", resourceCulture);
             }
         }
         
@@ -1073,6 +1100,15 @@ namespace NotionExporter.Properties {
         internal static string Warning {
             get {
                 return ResourceManager.GetString("Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        internal static string Website {
+            get {
+                return ResourceManager.GetString("Website", resourceCulture);
             }
         }
     }
