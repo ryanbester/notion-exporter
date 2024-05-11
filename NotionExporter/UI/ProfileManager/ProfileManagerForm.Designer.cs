@@ -116,7 +116,7 @@ namespace NotionExporter.UI.ProfileManager
             ActivateBtn.Name = "ActivateBtn";
             ActivateBtn.Size = new Size(75, 23);
             ActivateBtn.TabIndex = 6;
-            ActivateBtn.Text =Resources.ProfileManager_Activate;
+            ActivateBtn.Text = Resources.ProfileManager_Activate;
             ActivateBtn.UseVisualStyleBackColor = true;
             ActivateBtn.Click += ActivateBtn_Click;
             // 
@@ -157,6 +157,7 @@ namespace NotionExporter.UI.ProfileManager
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = CloseBtn;
             ClientSize = new Size(536, 221);
             Controls.Add(CloseBtn);
             Controls.Add(ExportBtn);
