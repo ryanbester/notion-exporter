@@ -18,4 +18,7 @@ var project = new ManagedProject(productName,
 };
 
 project.Include(WixExtension.NetFx);
-project.BuildMsi();
+project.BuildMultilanguageMsi(new ProjectLocalization("en-US", "Resources/en-US.wxl"), @"torch.exe",
+[
+    new ProjectLocalization("de-DE", "Resources/de-DE.wxl")
+]);
