@@ -40,7 +40,7 @@ namespace NotionExporter.UI
             Logger.MemorySink.Events.ToList().Where(filter).ToList().ForEach(AddLogEvent);
             ScrollToBottom();
         }
-        
+
         private void ScrollToBottom()
         {
             if (LogLst.Items.Count > 1) LogLst.TopItem = LogLst.Items[^1];
@@ -48,8 +48,11 @@ namespace NotionExporter.UI
 
         private void ReceiveLogEvent(LogEvent logEvent)
         {
-            AddLogEvent(logEvent);
-            ScrollToBottom();
+            Invoke(() =>
+            {
+                AddLogEvent(logEvent);
+                ScrollToBottom();
+            });
         }
 
         private void AddLogEvent(LogEvent logEvent)
@@ -88,7 +91,7 @@ namespace NotionExporter.UI
                     break;
             }
         }
-        
+
         private void ShowErrorDetails(LogEvent logEvent)
         {
             AppendDetailsSection(Resources.Level, _logLevels[(int)logEvent.Level]);
@@ -165,7 +168,7 @@ namespace NotionExporter.UI
                 CopyDetailsBtn.Enabled = false;
             }
         }
-        
+
         private void CopyDetailsBtn_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(DetailsTxt.Text);
@@ -180,7 +183,7 @@ namespace NotionExporter.UI
         {
             RedrawList(ev => (int)ev.Level >= FilterCombo.SelectedIndex);
         }
-        
+
         private void HighlightBtn_Click(object sender, EventArgs e)
         {
             HighlightBtn.Checked = !HighlightBtn.Checked;
