@@ -843,11 +843,38 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to create backup: {0}.
+        /// </summary>
+        internal static string Settings_BackupFailed {
+            get {
+                return ResourceManager.GetString("Settings_BackupFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup Settings.
         /// </summary>
         internal static string Settings_BackupSettings {
             get {
                 return ResourceManager.GetString("Settings_BackupSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup created successfully.
+        /// </summary>
+        internal static string Settings_BackupSuccessful {
+            get {
+                return ResourceManager.GetString("Settings_BackupSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The backup file will contain sensitive information, such as your Notion key. Do not distribute this file..
+        /// </summary>
+        internal static string Settings_BackupWarning {
+            get {
+                return ResourceManager.GetString("Settings_BackupWarning", resourceCulture);
             }
         }
         
@@ -866,6 +893,33 @@ namespace NotionExporter.Properties {
         internal static string Settings_General {
             get {
                 return ResourceManager.GetString("Settings_General", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to restore backup: {0}.
+        /// </summary>
+        internal static string Settings_RestoreFailed {
+            get {
+                return ResourceManager.GetString("Settings_RestoreFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup restored successfully. Please restart Notion Exporter..
+        /// </summary>
+        internal static string Settings_RestoreSuccessful {
+            get {
+                return ResourceManager.GetString("Settings_RestoreSuccessful", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Restore all settings in {0}. This will overwrite all local data..
+        /// </summary>
+        internal static string Settings_RestoreWarning {
+            get {
+                return ResourceManager.GetString("Settings_RestoreWarning", resourceCulture);
             }
         }
         

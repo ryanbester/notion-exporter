@@ -3,6 +3,7 @@ using NotionExporter.Core;
 using System.Globalization;
 using System.IO.Compression;
 using NotionExporter.Core.Settings;
+using NotionExporter.Properties;
 
 namespace NotionExporter.UI.Settings
 {
@@ -87,7 +88,6 @@ namespace NotionExporter.UI.Settings
 
             LanguageCombo.DataSource = Languages.SupportedLanguages;
             LanguageCombo.DisplayMember = "DisplayName";
-
 
             var culture = SettingsManager.Settings.Language.ToLower() == "qps-plocm"
                 ? new CultureInfo("qps-Ploc")
@@ -252,12 +252,12 @@ namespace NotionExporter.UI.Settings
         private void BackupSettingsBtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show(this,
-                "The backup file will contain sensitive information, such as your Notion key. Do not distribute this file.",
-                "Backup Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Resources.Settings_BackupWarning,
+                Resources.Settings_BackupSettings, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             var sfd = new SaveFileDialog();
-            sfd.Title = "Backup Settings";
-            sfd.Filter = "Zip Archives (*.zip)|*.zip";
+            sfd.Title = Resources.Settings_BackupSettings;
+            sfd.Filter = @"Zip Archives (*.zip)|*.zip";
             sfd.FileName = "NotionExporterBackup.zip";
             sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (sfd.ShowDialog() == DialogResult.OK)
@@ -265,12 +265,14 @@ namespace NotionExporter.UI.Settings
                 try
                 {
                     ZipFile.CreateFromDirectory(SettingsManager.SETTINGS_DIR, sfd.FileName);
-                    MessageBox.Show(this, "Backup created successfully", "Backup Settings", MessageBoxButtons.OK,
+                    MessageBox.Show(this, Resources.Settings_BackupSuccessful, Resources.Settings_BackupSettings,
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(this, "Failed to create backup: " + ex.Message, "Backup Settings",
+                    MessageBox.Show(this, string.Format(Resources.Settings_BackupFailed, ex.Message),
+                        Resources.Settings_BackupSettings,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -279,14 +281,14 @@ namespace NotionExporter.UI.Settings
         private void RestoreSettingsBtn_Click(object sender, EventArgs e)
         {
             var ofd = new OpenFileDialog();
-            ofd.Title = "Restore Settings";
-            ofd.Filter = "Zip Archives (*.zip)|*.zip";
+            ofd.Title = Resources.RestoreSettings;
+            ofd.Filter = @"Zip Archives (*.zip)|*.zip";
             ofd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 if (MessageBox.Show(this,
-                        string.Format("Restore all settings in {0}. This will overwrite all local data.", ofd.FileName),
-                        "Restore Settings", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) !=
+                        string.Format(Resources.Settings_RestoreWarning, ofd.FileName),
+                        Resources.RestoreSettings, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information) !=
                     DialogResult.Yes)
                 {
                     return;
@@ -300,13 +302,14 @@ namespace NotionExporter.UI.Settings
                     }
 
                     ZipFile.ExtractToDirectory(ofd.FileName, SettingsManager.SETTINGS_DIR);
-                    MessageBox.Show(this, "Backup restored successfully. Please restart Notion Exporter.",
-                        "Restore Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(this, Resources.Settings_RestoreSuccessful,
+                        Resources.RestoreSettings, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Exit();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(this, "Failed to restore backup: " + ex.Message, "Restore Settings",
+                    MessageBox.Show(this, string.Format(Resources.Settings_RestoreFailed, ex.Message),
+                        Resources.RestoreSettings,
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }

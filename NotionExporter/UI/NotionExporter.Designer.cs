@@ -407,6 +407,7 @@ namespace NotionExporter.UI
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "NotionExporter";
+            RightToLeftLayout = true;
             Text = Resources.NotionExporter;
             Load += NotionExporter_Load;
             MainTabControl.ResumeLayout(false);

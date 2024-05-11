@@ -468,4 +468,22 @@
   <data name="Website" xml:space="preserve">
     <value>Website</value>
   </data>
+  <data name="Settings_BackupSuccessful" xml:space="preserve">
+    <value>Backup created successfully</value>
+  </data>
+  <data name="Settings_BackupWarning" xml:space="preserve">
+    <value>The backup file will contain sensitive information, such as your Notion key. Do not distribute this file.</value>
+  </data>
+  <data name="Settings_BackupFailed" xml:space="preserve">
+    <value>Failed to create backup: {0}</value>
+  </data>
+  <data name="Settings_RestoreWarning" xml:space="preserve">
+    <value>Restore all settings in {0}. This will overwrite all local data.</value>
+  </data>
+  <data name="Settings_RestoreSuccessful" xml:space="preserve">
+    <value>Backup restored successfully. Please restart Notion Exporter.</value>
+  </data>
+  <data name="Settings_RestoreFailed" xml:space="preserve">
+    <value>Failed to restore backup: {0}</value>
+  </data>
 </root>
