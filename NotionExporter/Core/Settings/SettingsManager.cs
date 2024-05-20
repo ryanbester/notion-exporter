@@ -4,7 +4,7 @@ namespace NotionExporter.Core.Settings
 {
     internal static class SettingsManager
     {
-        public static Models.Settings Settings { get; set; } = new Models.Settings();
+        public static Models.Settings Settings { get; set; } = new();
         public static readonly string SETTINGS_DIR = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "NotionExporter");
         public static readonly string SETTINGS_FILE = Path.Combine(SETTINGS_DIR, "settings.json");
 

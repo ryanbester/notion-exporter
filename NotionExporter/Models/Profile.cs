@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using NotionExporter.Core.Settings;
 
@@ -7,11 +8,11 @@ namespace NotionExporter.Models
     [DebuggerDisplay("Name = {Name}, Built-In = {BuiltIn}")]
     public class Profile : ICloneable
     {
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("name")] public string Name { get; set; }
 
-        [JsonIgnore]
-        public bool BuiltIn { get; set; } = false;
+        [JsonPropertyName("module_settings")] public Dictionary<string, JsonElement> ModuleSettings { get; set; } = new();
+
+        [JsonIgnore] public bool BuiltIn { get; set; }
 
         public Profile(string name)
         {
@@ -49,10 +50,12 @@ namespace NotionExporter.Models
                 {
                     output = string.Format("{0} (Default)", output);
                 }
+
                 if (Equals(AppContext.CurrentProfile, this))
                 {
                     return string.Format("* {0}", output);
                 }
+
                 return output;
             }
         }

@@ -4,7 +4,7 @@ using NotionExporter.Models;
 
 namespace NotionExporter
 {
-    internal static class AppContext
+    public static class AppContext
     {
         public static NotionClient NotionClient = NotionClientFactory.Create(new ClientOptions());
         public static Profile CurrentProfile { get; set; } = Profiles.BuiltInProfiles[0];

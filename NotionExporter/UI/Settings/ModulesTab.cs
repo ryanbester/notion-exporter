@@ -30,7 +30,7 @@ namespace NotionExporter.UI.Settings
             {
                 ProcessesLbl.Text = "Processes: \n\n" + string.Join(", ", selectedItem.GetProcessesList());
 
-                var settingsForm = selectedItem.GetGlobalSettingsForm();
+                var settingsForm = selectedItem.GetSettingsManager().GlobalSettingsForm;
                 if (settingsForm != null)
                 {
                     ModuleSettingsBtn.Enabled = true;
@@ -51,7 +51,7 @@ namespace NotionExporter.UI.Settings
         {
             if (ModulesLst.SelectedItem != null)
             {
-                var settingsForm = ((Module)ModulesLst.SelectedItem).GetGlobalSettingsForm();
+                var settingsForm = ((Module)ModulesLst.SelectedItem).GetSettingsManager().GlobalSettingsForm;
                 if (settingsForm != null)
                 {
                     settingsForm.ShowDialog();

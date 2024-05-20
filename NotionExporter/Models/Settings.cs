@@ -17,6 +17,8 @@ namespace NotionExporter.Models
 
         [JsonPropertyName("language")] public string Language { get; set; } = "en-US";
 
-        [JsonPropertyName("log_level")] public LogEventLevel LogLevel { get;set;} = LogEventLevel.Information;
+        [JsonPropertyName("log_level")] public LogEventLevel LogLevel { get; set; } = LogEventLevel.Information;
+
+        [JsonPropertyName("module_settings")] public Dictionary<string, JsonElement> ModuleSettings { get; set; } = new();
     }
 }

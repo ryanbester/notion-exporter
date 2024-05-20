@@ -92,6 +92,11 @@ namespace NotionExporter
             AppContext.CurrentProfile = Profiles.GetDefaultProfile();
 
             DarkModeHelper.AppInit(darkModeProperties);
+
+            // Load modules
+            Logger.App?.LogInformation("Loading modules...");
+            Modules.LoadModules();
+
             Application.Run(new UI.NotionExporter());
         }
     }
