@@ -15,7 +15,8 @@ public static class Logger
     {
         var serilog = new LoggerConfiguration()
             .MinimumLevel.Is(SettingsManager.Settings.LogLevel)
-            .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day,
+                outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Properties:j} {Message:lj}{NewLine}{Exception}")
             .WriteTo.Sink(MemorySink)
             .CreateLogger();
 
