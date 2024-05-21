@@ -1,5 +1,4 @@
 using DarkMode.Helper;
-using System.Runtime.InteropServices;
 using NotionExporter.Core;
 using NotionExporter.Core.Settings;
 using NotionExporter.Models;
@@ -10,26 +9,9 @@ namespace NotionExporter.UI
 {
     public partial class NotionExporter : Form
     {
-        #region Win32 API
-
-        // Define the Win32 API methods we are going to use
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
-
-        [DllImport("user32.dll")]
-        private static extern bool InsertMenu(IntPtr hMenu, Int32 wPosition, Int32 wFlags, Int32 wIDNewItem, string lpNewItem);
-
-        /// Define our Constants we will use
-        public const Int32 WM_SYSCOMMAND = 0x112;
-        public const Int32 MF_SEPARATOR = 0x800;
-        public const Int32 MF_BYPOSITION = 0x400;
-        public const Int32 MF_STRING = 0x0;
-
-        #endregion
-
-        public const Int32 _ProfileManagerSysMenuID = 1000;
-        public const Int32 _SettingsSysMenuID = 1001;
-        public const Int32 _AboutSysMenuID = 1002;
+        private const Int32 ProfileManagerSysMenuId = 1000;
+        private const Int32 SettingsSysMenuId = 1001;
+        private const Int32 AboutSysMenuId = 1002;
 
         public NotionExporter()
         {
@@ -40,17 +22,17 @@ namespace NotionExporter.UI
 
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == WM_SYSCOMMAND)
+            if (m.Msg == NativeMethods.WM_SYSCOMMAND)
             {
                 switch (m.WParam.ToInt32())
                 {
-                    case _ProfileManagerSysMenuID:
+                    case ProfileManagerSysMenuId:
                         OpenProfileManagerDlg();
                         break;
-                    case _SettingsSysMenuID:
+                    case SettingsSysMenuId:
                         OpenSettingsDlg();
                         break;
-                    case _AboutSysMenuID:
+                    case AboutSysMenuId:
                         OpenAboutDlg();
                         break;
                 }
@@ -64,12 +46,15 @@ namespace NotionExporter.UI
         {
             DarkModeHelper.WndLoad(this);
 
-            IntPtr systemMenuHandle = GetSystemMenu(this.Handle, false);
+            IntPtr systemMenuHandle = NativeMethods.GetSystemMenu(this.Handle, false);
 
-            InsertMenu(systemMenuHandle, 5, MF_BYPOSITION | MF_SEPARATOR, 0, string.Empty);
-            InsertMenu(systemMenuHandle, 6, MF_BYPOSITION, _ProfileManagerSysMenuID, "Profile Manager...");
-            InsertMenu(systemMenuHandle, 7, MF_BYPOSITION, _SettingsSysMenuID, "Settings...");
-            InsertMenu(systemMenuHandle, 8, MF_BYPOSITION, _AboutSysMenuID, "About...");
+            NativeMethods.InsertMenu(systemMenuHandle, 5, NativeMethods.MF_BYPOSITION | NativeMethods.MF_SEPARATOR, 0,
+                string.Empty);
+            NativeMethods.InsertMenu(systemMenuHandle, 6, NativeMethods.MF_BYPOSITION, ProfileManagerSysMenuId,
+                "Profile Manager...");
+            NativeMethods.InsertMenu(systemMenuHandle, 7, NativeMethods.MF_BYPOSITION, SettingsSysMenuId,
+                "Settings...");
+            NativeMethods.InsertMenu(systemMenuHandle, 8, NativeMethods.MF_BYPOSITION, AboutSysMenuId, "About...");
 
             var notionKey = SettingsManager.Settings.NotionKey;
             if (notionKey == null || notionKey.Length == 0)
