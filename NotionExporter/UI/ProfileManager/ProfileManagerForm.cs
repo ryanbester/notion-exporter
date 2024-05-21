@@ -1,9 +1,11 @@
 ﻿using DarkMode.Helper;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using NotionExporter.Core;
 using NotionExporter.Core.Settings;
 using NotionExporter.Models;
 using NotionExporter.Properties;
+using NotionExporter.UI.Controls;
 
 namespace NotionExporter.UI.ProfileManager
 {
@@ -118,7 +120,7 @@ namespace NotionExporter.UI.ProfileManager
                 
                 if (Profiles.GetProfile(profile.Name) != null)
                 {
-                    MessageBox.Show(this, "A profile already exists with this name.", Resources.ProfileManagerForm_ImportProfile, MessageBoxButtons.OK,
+                    MessageBox.Show(this, Resources.ProfileManagerForm_ImportProfileAlreadyExists, Resources.ProfileManagerForm_ImportProfile, MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                     return;
                 }
@@ -126,7 +128,7 @@ namespace NotionExporter.UI.ProfileManager
                 // TODO: Error handling
                 SettingsManager.Settings.Profiles.Add(profile);
                 SettingsManager.WriteSettings();
-                MessageBox.Show(this, "Profile imported successfully", Resources.ProfileManagerForm_ImportProfile, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                MessageBox.Show(this, Resources.ProfileManagerForm_ImportProfileSuccess, Resources.ProfileManagerForm_ImportProfile, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                 LoadData();
             }
         }
@@ -134,15 +136,41 @@ namespace NotionExporter.UI.ProfileManager
         private void ExportBtn_Click(object sender, EventArgs e)
         {
             var profile = (Profile)ProfilesLst.SelectedItem;
-            var sfd = new SaveFileDialog();
-            sfd.Title = string.Format(Resources.ProfileManagerForm_ExportTitle, profile.Name);
-            sfd.FileName = string.Format("{0}.nep", profile.Name);
-            sfd.Filter = "Notion Exporter Profile Files (*.nep)|*.nep|All Files (*.*)|*.*";
-            if (sfd.ShowDialog() == DialogResult.OK)
+            var options = new ExportProfileControls();
+            using var sfd = new CustomSaveDialog(new SaveFileDialog()
+            {
+                Title = string.Format(Resources.ProfileManagerForm_ExportTitle, profile.Name),
+                FileName = $"{profile.Name}.nep",
+                Filter = "Notion Exporter Profile Files (*.nep)|*.nep|All Files (*.*)|*.*"
+            }, options);
+
+            if (sfd.Dlg.ShowDialog() == DialogResult.OK)
             {
                 var data = JsonSerializer.Serialize(profile);
-                File.WriteAllText(sfd.FileName, data);
-                MessageBox.Show(this, "Profile exported successfully", "Export Profile", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                if (options.IncludeModulesChk.Checked)
+                {
+                    var exportProfile = new ProfileWithModules(profile);
+                    data = JsonSerializer.Serialize(exportProfile);
+                }
+                
+                File.WriteAllText(sfd.Dlg.FileName, data);
+                MessageBox.Show(this, Resources.ProfileManagerForm_ExportProfileSuccess, Resources.ProfileManagerForm_ExportProfile, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+        }
+    }
+
+    internal class ProfileWithModules : Profile
+    {
+        [JsonPropertyName("modules")]
+        public Dictionary<string, Version> Modules { get; }
+
+        public ProfileWithModules(Profile profile) : base(profile.Name)
+        {
+            Modules = new Dictionary<string, Version>();
+            foreach (var module in Core.Modules.ModulesList)
+            {
+                Modules.Add(module.GetType().FullName!, module.GetMetadata().Version);
             }
         }
     }

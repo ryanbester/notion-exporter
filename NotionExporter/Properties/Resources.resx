@@ -486,4 +486,22 @@
   <data name="Settings_RestoreFailed" xml:space="preserve">
     <value>Failed to restore backup: {0}</value>
   </data>
+  <data name="ProfileManagerForm_ExportProfile" xml:space="preserve">
+    <value>Export Profile</value>
+  </data>
+  <data name="ProfileManagerForm_ImportProfileSuccess" xml:space="preserve">
+    <value>Profile imported successfully</value>
+  </data>
+  <data name="ProfileManagerForm_ExportProfileSuccess" xml:space="preserve">
+    <value>Profile exported successfully</value>
+  </data>
+  <data name="ProfileManagerForm_ImportProfileAlreadyExists" xml:space="preserve">
+    <value>A profile already exists with this name.</value>
+  </data>
+  <data name="ExportProfileControls_IncludeModules" xml:space="preserve">
+    <value>Include Modules</value>
+  </data>
+  <data name="ExportProfileControls_IncludeModulesTooltip" xml:space="preserve">
+    <value>Include all modules and versions in the export. Useful when sharing profiles.</value>
+  </data>
 </root>

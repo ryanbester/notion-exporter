@@ -330,6 +330,24 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Include Modules.
+        /// </summary>
+        internal static string ExportProfileControls_IncludeModules {
+            get {
+                return ResourceManager.GetString("ExportProfileControls_IncludeModules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include all modules and versions in the export. Useful when sharing profiles..
+        /// </summary>
+        internal static string ExportProfileControls_IncludeModulesTooltip {
+            get {
+                return ResourceManager.GetString("ExportProfileControls_IncludeModulesTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export Queue.
         /// </summary>
         internal static string ExportQueue {
@@ -717,6 +735,24 @@ namespace NotionExporter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export Profile.
+        /// </summary>
+        internal static string ProfileManagerForm_ExportProfile {
+            get {
+                return ResourceManager.GetString("ProfileManagerForm_ExportProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile exported successfully.
+        /// </summary>
+        internal static string ProfileManagerForm_ExportProfileSuccess {
+            get {
+                return ResourceManager.GetString("ProfileManagerForm_ExportProfileSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export {0}.
         /// </summary>
         internal static string ProfileManagerForm_ExportTitle {
@@ -731,6 +767,24 @@ namespace NotionExporter.Properties {
         internal static string ProfileManagerForm_ImportProfile {
             get {
                 return ResourceManager.GetString("ProfileManagerForm_ImportProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A profile already exists with this name..
+        /// </summary>
+        internal static string ProfileManagerForm_ImportProfileAlreadyExists {
+            get {
+                return ResourceManager.GetString("ProfileManagerForm_ImportProfileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile imported successfully.
+        /// </summary>
+        internal static string ProfileManagerForm_ImportProfileSuccess {
+            get {
+                return ResourceManager.GetString("ProfileManagerForm_ImportProfileSuccess", resourceCulture);
             }
         }
         

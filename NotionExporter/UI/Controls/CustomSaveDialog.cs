@@ -1,6 +1,4 @@
 ﻿using System.Text;
-using Microsoft.Extensions.Logging;
-using NotionExporter.Core.Logging;
 using static NotionExporter.Core.NativeMethods;
 
 namespace NotionExporter.UI.Controls;
