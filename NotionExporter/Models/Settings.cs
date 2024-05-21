@@ -1,9 +1,10 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 using Serilog.Events;
 
 namespace NotionExporter.Models
 {
-    public partial class Settings
+    public class Settings
     {
         [JsonPropertyName("notion_key")] public string NotionKey { get; set; } = string.Empty;
 

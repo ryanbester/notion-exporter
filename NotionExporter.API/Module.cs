@@ -18,15 +18,32 @@ namespace NotionExporter.API
         public abstract string GetName();
 
         /// <summary>
+        /// Returns the metadata of the module.
+        /// </summary>
+        /// <returns>The metadata of the module</returns>
+        public abstract ModuleMetadata GetMetadata();
+
+        /// <summary>
         /// Returns the list of Notion block types the module processes.
         /// </summary>
         /// <returns>A string list of Notion block types</returns>
-        public abstract List<string> GetProcessesList();
+        public abstract IEnumerable<string> GetProcessesList();
 
         /// <summary>
         /// Returns the SettingsManager instance.
         /// </summary>
         /// <returns>The SettingsManager instance.</returns>
         public abstract SettingsManager GetSettingsManager();
+    }
+
+    public class ModuleMetadata(Version version)
+    {
+        public Version Version { get; set; } = version;
+        public List<string> Authors { get; set; } = [];
+        public string Description { get; set; } = string.Empty;
+        public string Webpage { get; set; } = string.Empty;
+        public string Source { get; set; } = string.Empty;
+        public string Issues { get; set; } = string.Empty;
+        public string License { get; set; } = string.Empty;
     }
 }
