@@ -1,4 +1,6 @@
 ﻿using System.Text;
+using Microsoft.Extensions.Logging;
+using NotionExporter.Core.Logging;
 using static NotionExporter.Core.NativeMethods;
 
 namespace NotionExporter.UI.Controls;
@@ -31,7 +33,29 @@ public class CustomSaveDialog : IDisposable
             (uint)Environment.ProcessId, 0, WINEVENT_OUTOFCONTEXT);
     }
 
-    private static bool EnumChildCallback(IntPtr hWnd, IntPtr lParam)
+    private static bool EnumChildCallbackDialog(IntPtr hWnd, IntPtr lParam)
+    {
+        var className = new StringBuilder(256);
+        GetClassName(hWnd, className, className.Capacity);
+
+        if (className.ToString() == "#32770")
+        {
+            var title = new StringBuilder(256);
+            GetWindowText(hWnd, title, title.Capacity);
+
+            if (_staticSfd != null && title.Equals(_staticSfd.Dlg.Title))
+            {
+                _staticSfd._hSfd = hWnd;
+                return false;
+            }
+
+            return true;
+        }
+
+        return true;
+    }
+
+    private static bool EnumChildCallbackToolbar(IntPtr hWnd, IntPtr lParam)
     {
         var className = new StringBuilder(256);
         GetClassName(hWnd, className, className.Capacity);
@@ -50,20 +74,20 @@ public class CustomSaveDialog : IDisposable
     {
         if (_staticSfd != null)
         {
-            if (_staticSfd?._hSfd == IntPtr.Zero)
+            if (_staticSfd._hSfd == IntPtr.Zero)
             {
-                _staticSfd._hSfd = FindWindowEx(IntPtr.Zero, IntPtr.Zero, "#32770", _staticSfd.Dlg.Title);
+                EnumChildWindows(IntPtr.Zero, EnumChildCallbackDialog, IntPtr.Zero);
             }
 
             if (eventType == EVENT_OBJECT_SHOW)
             {
-                if (_hWndBottomBar == IntPtr.Zero && _staticSfd != null)
+                if (_hWndBottomBar == IntPtr.Zero)
                 {
-                    EnumChildWindows(_staticSfd._hSfd, EnumChildCallback, IntPtr.Zero);
+                    EnumChildWindows(_staticSfd._hSfd, EnumChildCallbackToolbar, IntPtr.Zero);
                 }
             }
 
-            if (_staticSfd != null && hWnd == _staticSfd._hSfd && eventType is EVENT_OBJECT_NAMECHANGE
+            if (hWnd == _staticSfd._hSfd && eventType is EVENT_OBJECT_NAMECHANGE
                     or EVENT_OBJECT_LOCATIONCHANGE)
             {
                 var hParent = GetParent(_staticSfd._hCtrl);
