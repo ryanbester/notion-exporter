@@ -20,6 +20,9 @@ namespace NotionExporter.Models
 
         [JsonPropertyName("log_level")] public LogEventLevel LogLevel { get; set; } = LogEventLevel.Information;
 
-        [JsonPropertyName("module_settings")] public Dictionary<string, JsonElement> ModuleSettings { get; set; } = new();
+        [JsonPropertyName("module_settings")]
+        public Dictionary<string, JsonElement> ModuleSettings { get; set; } = new();
+
+        [JsonPropertyName("disabled_modules")] public List<string> DisabledModules { get; set; } = new();
     }
 }

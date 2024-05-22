@@ -1,15 +1,33 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Logging;
+
+[assembly: InternalsVisibleTo("NotionExporter")]
 
 namespace NotionExporter.API
 {
     public abstract class Module
     {
         /// <summary>
-        /// Called when a module is first initialised; on program start up all when dynamically added in the Modules settings tab.
+        /// True if the module is a built-in module.
+        /// Built-in modules cannot be disabled by the user.
         /// </summary>
-        /// <param name="logger">The logger instance to use when logging module events</param>
-        /// <param name="instanceInfo">A class implemented IInstanceInfo, for querying various application parameters.</param>
-        public abstract void InitModule(ILogger? logger, IInstanceInfo instanceInfo);
+        public bool BuiltIn { get; internal set; }
+
+        /// <summary>
+        /// True if the module has been disabled by the user.
+        /// </summary>
+        public bool Disabled { get; internal set; }
+
+        /// <summary>
+        /// Stores the full path of the DLL when the plugin is loaded.
+        /// </summary>
+        internal string FullPath { get; set; }
+
+        /// <summary>
+        /// Returns the value of <c>GetName()</c>.
+        /// Used for the <c>DisplayMember</c> property.
+        /// </summary>
+        public string Name => GetName();
 
         /// <summary>
         /// Returns the name of the module.
@@ -28,6 +46,30 @@ namespace NotionExporter.API
         /// </summary>
         /// <returns>A string list of Notion block types</returns>
         public abstract IEnumerable<string> GetProcessesList();
+
+        /// <summary>
+        /// Called when a module is first initialised; on program start up or when dynamically added in the Modules settings tab.
+        /// This method is also called if a module is disabled, be sure to query the <c>Disabled</c> property.
+        /// </summary>
+        /// <param name="logger">The logger instance to use when logging module events</param>
+        /// <param name="instanceInfo">A class implemented IInstanceInfo, for querying various application parameters.</param>
+        public abstract void InitModule(ILogger? logger, IInstanceInfo instanceInfo);
+
+        /// <summary>
+        /// Called when a module has been enabled by the user.
+        /// This method is not called when a plugin is first installed.
+        /// </summary>
+        public virtual void OnEnable()
+        {
+        }
+
+        /// <summary>
+        /// Called when a module has been disabled by the user.
+        /// This method is not called when a plugin is uninstalled.
+        /// </summary>
+        public virtual void OnDisable()
+        {
+        }
 
         /// <summary>
         /// Returns the SettingsManager instance.

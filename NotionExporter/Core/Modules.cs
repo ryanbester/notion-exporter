@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using System.Globalization;
+using Microsoft.Extensions.Logging;
 using NotionExporter.Core.Logging;
 using System.Reflection;
 using NotionExporter.API;
@@ -34,21 +35,14 @@ namespace NotionExporter.Core
                 using (logger?.BeginScope(new Dictionary<string, object>
                        {
                            ["ModulePath"] = className!,
+                           ["Built-In"] = true
                        }))
                 {
                     logger?.LogInformation("Loading built-in module");
 
                     try
                     {
-                        module.InitModule(Logger.Factory?.CreateLogger(className!), InstanceInfo);
-                        var name = module.GetName();
-                        
-                        logger?.LogInformation("Loading settings for built-in module");
-                        LoadModuleSettings(module, className!);
-
-                        logger?.LogInformation($"Loaded built-in module {name}");
-
-                        ModulesList.Add(module);
+                        LoadModule(logger, module, className!);
                     }
                     catch (Exception ex)
                     {
@@ -64,13 +58,14 @@ namespace NotionExporter.Core
                 using (logger?.BeginScope(new Dictionary<string, object>
                        {
                            ["ModulePath"] = file,
+                           ["Built-In"] = false
                        }))
                 {
                     logger?.LogInformation("Loading module");
 
                     try
                     {
-                        var dll = Assembly.LoadFile(file);
+                        var dll = Assembly.Load(File.ReadAllBytes(file));
 
                         var typeFound = false;
                         foreach (var type in dll.GetExportedTypes())
@@ -78,19 +73,13 @@ namespace NotionExporter.Core
                             if (!type.IsSubclassOf(typeof(Module))) continue;
 
                             logger?.LogInformation($"Found module main class to be {type.Name}");
-
-                            var main = (Module)Activator.CreateInstance(type)!;
-                            main.InitModule(Logger.Factory?.CreateLogger(type.FullName!), InstanceInfo);
-                            var name = main.GetName();
-                            
-                            logger?.LogInformation("Loading settings for module");
-                            LoadModuleSettings(main, type.FullName!);
-
-                            logger?.LogInformation($"Loaded module {name}");
-
-                            ModulesList.Add(main);
-
                             typeFound = true;
+
+                            var module = (Module)Activator.CreateInstance(type)!;
+                            var className = module.GetType().FullName!;
+                            module.FullPath = file;
+
+                            LoadModule(logger, module, className);
                             break;
                         }
 
@@ -106,6 +95,33 @@ namespace NotionExporter.Core
                     }
                 }
             }
+        }
+
+        private static bool IsModuleDisabled(string className)
+        {
+            return SettingsManager.Settings.DisabledModules.Contains(className);
+        }
+
+        private static void LoadModule(ILogger? logger, Module module, string className)
+        {
+            module.Disabled = !module.BuiltIn && IsModuleDisabled(className);
+
+            module.InitModule(Logger.Factory?.CreateLogger(className!), InstanceInfo);
+            var name = module.GetName();
+
+            if (module.Disabled)
+            {
+                logger?.LogInformation("Module is disabled");
+                ModulesList.Add(module);
+                return;
+            }
+
+            logger?.LogInformation("Loading settings for module");
+            LoadModuleSettings(module, className);
+
+            logger?.LogInformation($"Loaded module {name}");
+
+            ModulesList.Add(module);
         }
 
         private static void LoadModuleSettings(Module module, string className)
@@ -125,13 +141,92 @@ namespace NotionExporter.Core
                     deserializeProfile(moduleSettings);
             }
         }
+
+        public static void DisableModule(Module module)
+        {
+            if (module.BuiltIn) throw new InvalidOperationException("Attempted to disable built-in module");
+
+            module.Disabled = true;
+            if (!SettingsManager.Settings.DisabledModules.Contains(module.GetType().FullName!))
+            {
+                SettingsManager.Settings.DisabledModules.Add(module.GetType().FullName!);
+            }
+
+            SettingsManager.WriteSettings();
+
+            module.OnDisable();
+        }
+
+        public static void EnableModule(Module module)
+        {
+            module.Disabled = false;
+            SettingsManager.Settings.DisabledModules.RemoveAll(n => n == module.GetType().FullName!);
+            SettingsManager.WriteSettings();
+
+            module.OnEnable();
+        }
+
+        public static void AddModule(string filename)
+        {
+            var logger = Logger.Factory?.CreateLogger("Modules");
+
+            var path = Path.Combine(Environment.CurrentDirectory, "modules");
+            var dest = Path.Combine(path, Path.GetFileName(filename));
+            File.Copy(filename, dest);
+
+            using (logger?.BeginScope(new Dictionary<string, object>
+                   {
+                       ["ModulePath"] = dest,
+                       ["Built-In"] = false
+                   }))
+            {
+                logger?.LogInformation("Loading module");
+
+                try
+                {
+                    var dll = Assembly.Load(File.ReadAllBytes(dest));
+
+                    var typeFound = false;
+                    foreach (var type in dll.GetExportedTypes())
+                    {
+                        if (!type.IsSubclassOf(typeof(Module))) continue;
+
+                        logger?.LogInformation($"Found module main class to be {type.Name}");
+                        typeFound = true;
+
+                        var module = (Module)Activator.CreateInstance(type)!;
+                        var className = module.GetType().FullName!;
+                        module.FullPath = dest;
+
+                        LoadModule(logger, module, className);
+                        break;
+                    }
+
+                    if (!typeFound)
+                    {
+                        logger?.LogError(
+                            "Module does not have a main class that extends NotionExporter.API.Module");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger?.LogError(ex, "Failed to load module");
+                }
+            }
+        }
+
+        public static void RemoveModule(Module module)
+        {
+            File.Delete(module.FullPath);
+
+            ModulesList.Remove(module);
+        }
     }
 
     internal class InstanceInfo : IInstanceInfo
     {
-        public bool IsBuiltInProfile()
-        {
-            return AppContext.CurrentProfile.BuiltIn;
-        }
+        public bool IsBuiltInProfile() => AppContext.CurrentProfile.BuiltIn;
+        public CultureInfo CurrentLocale() => Languages.Locale;
+        public bool IsRightToLeft() => Languages.IsRightToLeft;
     }
 }
